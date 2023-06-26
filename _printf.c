@@ -18,45 +18,30 @@ int _printf(const char *format, ...)
 		{
 			if (format[i + 1] == '%')
 			{
-				_putchar(format[i]);
-				finLen = finLen + 1;
+				finLen = finLen + _putchar(format[i]);
 				i = i + 1;
 			}
 			else if (format[i + 1] == 'c')
 			{
 				c = va_arg(vargs, int);
 				if (c)
-				{
 					finLen = finLen + _print_c(c);
-				}
 				i = i + 1;
 			}
 			else if (format[i + 1] == 's')
 			{
 				s = va_arg(vargs, char *);
 				if (s)
-				{
 					finLen = finLen + _print_s(s);
-				}
 				i = i + 1;
 			}
 			else if (format[i + 1] == '\0')
-			{
-				finLen = -1;
-				return (finLen);
-				i = i + 1;
-			}
+				return (finLen = -1);
 			else
-			{
-				_putchar(format[i]);
-				finLen = finLen + 1;
-			}
+				finLen = finLen + _putchar(format[i]);
 		}
 		else if (format[i] != '\0')
-		{
-			_putchar(format[i]);
-			finLen = finLen + 1;
-		}
+			finLen = finLen + _putchar(format[i]);
 		i++;
 	}
 	va_end(vargs);
