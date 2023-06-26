@@ -7,7 +7,7 @@
  */
 int _printf(const char *format, ...)
 {
-	int i = 0;
+	int i = 0, finLen = 0;
 	char *s;
 	va_list vargs;
 
@@ -16,34 +16,42 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			if (format[i + 1] == 'c')
+			if (format[i + 1] == '%')
 			{
-				_putchar(va_arg(vargs, int));
+				_putchar(format[i]);
+				finLen = finLen + 1;
+				i = i + 1;
+			}
+			else if (format[i + 1] == 'c')
+			{
+				finLen = finLen + _print_c(va_arg(vargs, int));
 				i = i + 1;
 			}
 			else if (format[i + 1] == 's')
 			{
 				s = va_arg(vargs, char *);
-				while (*s != '\0')
-				{
-					_putchar(*s);
-					s++;
-				}
+				finLen = finLen + _print_s(s);
 				i = i + 1;
+			}
+			else if (format[i + 1] == '\0')
+			{
+				finLen = -1;
+				return (finLen);
+				i = i + 1;
+			}
+			else
+			{
+				_putchar(format[i]);
+				finLen = finLen + 1;
 			}
 		}
 		else if (format[i] != '\0')
 		{
 			_putchar(format[i]);
+			finLen = finLen + 1;
 		}
 		i++;
 	}
 	va_end(vargs);
-	return (_strlen(format));
+	return (finLen);
 }
-	/*
-	_printf("char: %c\nString: %s\nint: %i\nfloat: %d\nchar again: %c", 'C', "String", 6, 9, 'R');
-        _printf("Let's try to printf a simple sentence.\n");
-        _printf("Character:[%c]\n", 'H');
-        _printf("String:[%s]\n", "I am a string !");
-	*/

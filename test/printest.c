@@ -28,7 +28,7 @@ int _printf(const char *format, ...)
 			if (format[i + 1] == 'c')
 			{
 				_putchar(va_arg(args, int));
-				i = i + 2;
+				i = i + 1;
 			}
 			else if (format[i + 1] == 's')
 			{
@@ -38,9 +38,9 @@ int _printf(const char *format, ...)
 					_putchar(*s);
 					s++;
 				}
-				i = i + 2;
+				i = i + 1;
 			}
-			/*if (format[i + 1] == 'i' || format[i + 1] == 'd')
+			else if (format[i + 1] == 'i' || format[i + 1] == 'd')
 			{
 				d = va_arg(args, int);
 				auxd = d;
@@ -50,6 +50,10 @@ int _printf(const char *format, ...)
 					sumint++;
 				}
 				intochar = malloc(sumint);
+				if (intochar == NULL)
+				{
+					break;
+				}
 				j = sumint - 1;
 				while (j >= 0)
 				{
@@ -64,10 +68,10 @@ int _printf(const char *format, ...)
 					j++;
 				}
 				free(intochar);
-				i = i + 2;
-			}*/
+				i = i + 1;
+			}
 		}
-		if (format[i] != '\0')
+		else if (format[i] != '\0')
 		{
 			_putchar(format[i]);
 		}
