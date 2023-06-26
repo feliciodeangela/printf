@@ -8,7 +8,7 @@
 int _printf(const char *format, ...)
 {
 	int i = 0, finLen = 0;
-	char *s;
+	char *s, c;
 	va_list vargs;
 
 	va_start(vargs, format);
@@ -24,9 +24,10 @@ int _printf(const char *format, ...)
 			}
 			else if (format[i + 1] == 'c')
 			{
-				if (va_arg(vargs, int))
+				c = va_arg(vargs, int);
+				if (c)
 				{
-					finLen = finLen + _print_c(va_arg(vargs, int));
+					finLen = finLen + _print_c(c);
 				}
 				i = i + 1;
 			}

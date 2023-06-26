@@ -5,6 +5,11 @@ int main(void)
 {
 	int len = 0;
 	int len2 = 0;
+	_printf("Character:[%c]\n", 'H');
+	printf("Character:[%c]\n", 'H');
+	_printf("String:[%s]\n", "I am a string !");
+	printf("String:[%s]\n", "I am a string !");
+	_printf("char: %c\nString: %s\nint: %i\nfloat: %d\nchar again: %c\n", 'C', "String", 'R');
 	
 	len = _printf("A %s sentence\n", "simple");
 	len2 = printf("A %s sentence\n", "simple");
