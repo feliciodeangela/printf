@@ -42,6 +42,8 @@ void print_selector(const char *fmt, va_list args, int *newLen)
 					break;
 			}
 		}
+		else if (fmt == NULL)
+			*newLen = -1;
 		else
 			*newLen = *newLen + print_c(*fmt);
 		fmt++;
