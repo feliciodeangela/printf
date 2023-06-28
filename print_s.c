@@ -8,7 +8,7 @@ int print_s(char *s)
 {
 	int count = 0;
 
-	if (s)
+	if (s != NULL)
 	{
 		while (*s != '\0')
 		{
@@ -18,7 +18,7 @@ int print_s(char *s)
 	}
 	else
 	{
-		count = count + print_s("(null)");
+		count = count + _printf("(null)");
 	}
 	return (count);
 }

@@ -9,7 +9,6 @@
 void print_selector(const char *fmt, va_list args, int *newLen)
 {
 	int carg;
-	char *sarg;
 
 	while (*fmt != '\0')
 	{
@@ -28,9 +27,7 @@ void print_selector(const char *fmt, va_list args, int *newLen)
 					fmt++;
 					break;
 				case 's':
-					sarg = (char *)va_arg(args, char *);
-					if (sarg)
-						*newLen = *newLen + print_s(sarg);
+					*newLen = *newLen + print_s((char *)va_arg(args, char *));
 					fmt++;
 					break;
 				case '\0':
@@ -42,9 +39,7 @@ void print_selector(const char *fmt, va_list args, int *newLen)
 			}
 		}
 		else
-		{
 			*newLen = *newLen + print_c(*fmt);
-		}
 		fmt++;
 	}
 }
