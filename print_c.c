@@ -7,5 +7,7 @@
  */
 int print_c(char c)
 {
+	if (!c)
+		return (0);
 	return (write(1, &c, 1));
 }
