@@ -26,6 +26,14 @@ void print_selector(const char *fmt, va_list args, int *newLen)
 					*newLen = *newLen + print_s((char *)va_arg(args, char *));
 					fmt++;
 					break;
+				case 'i':
+					*newLen = *newLen + print_id((int)va_arg(args, int));
+					fmt++;
+					break;
+				case 'd':
+					*newLen = *newLen + print_id((int)va_arg(args, int));
+					fmt++;
+					break;
 				case '\0':
 					*newLen = -1;
 					break;
