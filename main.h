@@ -7,6 +7,6 @@
 int _printf(const char *format, ...);
 int print_c(char c);
 int print_s(char *s);
-int print_selector(const char *fmt, va_list args, int *newLen);
+void print_selector(const char *fmt, va_list args, int *newLen);
 
 #endif
