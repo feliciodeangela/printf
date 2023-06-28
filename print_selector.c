@@ -1,7 +1,6 @@
 #include "main.h"
 /**
- * print_selector - Entry point.
- * Description: Selects type of print based on format specifier.
+ * print_selector - Selects type of print based on format specifier.
  * @fmt: Format to print.
  * @args: Arguments to substitute.
  * @newLen: Total String length.
@@ -42,8 +41,6 @@ void print_selector(const char *fmt, va_list args, int *newLen)
 					break;
 			}
 		}
-		else if (fmt == NULL)
-			*newLen = -1;
 		else
 			*newLen = *newLen + print_c(*fmt);
 		fmt++;
