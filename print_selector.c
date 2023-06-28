@@ -9,7 +9,7 @@ void print_selector(const char *fmt, va_list args, int *newLen)
 {
 	while (*fmt != '\0')
 	{
-		if (*fmt == '%')
+		if (*fmt == '%' || *fmt == '\0')
 		{
 			switch (*(fmt + 1))
 			{
