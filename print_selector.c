@@ -8,8 +8,6 @@
  */
 void print_selector(const char *fmt, va_list args, int *newLen)
 {
-	int carg;
-
 	while (*fmt != '\0')
 	{
 		if (*fmt == '%')
@@ -21,9 +19,7 @@ void print_selector(const char *fmt, va_list args, int *newLen)
 					fmt++;
 					break;
 				case 'c':
-					carg = (int)va_arg(args, int);
-					if (carg)
-						*newLen = *newLen + print_c(carg);
+					*newLen = *newLen + print_c((int)va_arg(args, int));
 					fmt++;
 					break;
 				case 's':

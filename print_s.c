@@ -18,7 +18,7 @@ int print_s(char *s)
 	}
 	else
 	{
-		count = count + _printf("(null)") + 1;
+		count = count + _printf("(null)");
 	}
 	return (count);
 }
