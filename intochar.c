@@ -1,46 +1,40 @@
 #include "main.h"
 /**
- * intochar - Entry point.
- * Description: Converts a number to an array of characters.
- * @ia: Number to convert.
+ * intochar - Converts a number to an array of characters.
+ * @num: Number to convert.
+ * @str: Allocated string.
  * Return: Size of array that represents the number.
  */
-int intochar(int ia)
+int intochar(int num, char *str)
 {
-	int size = 0, i = 0, num = ia, newia;
-	char *restr;
+	int i = 0, isNegative = 0, start, end, digit;
+	char temp;
 
-	if (ia == 0)
+	if (num < 0)
 	{
-		print_c('0');
-		return (1);
+		isNegative = 1;
+		num = -num;
 	}
 	while (num != 0)
 	{
+		digit = num % 10;
+		str[i++] = '0' + digit;
 		num = num / 10;
-		size++;
 	}
-	if (ia < 0)
+	if (isNegative)
 	{
-		size++;
-		num = - num;
+		str[i++] = '-';
 	}
-	restr = malloc(size + 1);
-	if (ia < 0)
+	start = 0;
+	end = i - 1;
+	while (start < end)
 	{
-		restr[0] = '-';
-		i++;
+		temp = str[start];
+		str[start] = str[end];
+		str[end] = temp;
+		start++;
+		end--;
 	}
-	num = ia;
-	while (i < size)
-	{
-		newia = num % 10;
-		num = num / 10;
-		restr[size - (i + 1)] = '0' + newia;
-		i++;
-	}
-	restr[i] = '\0';
-	print_s(restr);
-	free(restr);
-	return (size);
+	str[i] = '\0';
+	return (print_s(str));
 }
