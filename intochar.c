@@ -7,7 +7,7 @@
  */
 int intochar(int ia)
 {
-	int size = 0, i = 0, num = ia, newia, neg = 0;
+	int size = 0, i = 0, num = ia, newia;
 	char *restr;
 
 	if (ia == 0)
@@ -23,6 +23,7 @@ int intochar(int ia)
 	if (ia < 0)
 	{
 		size++;
+		num = - num;
 	}
 	restr = malloc(size + 1);
 	if (ia < 0)
