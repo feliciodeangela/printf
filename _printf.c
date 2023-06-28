@@ -5,45 +5,77 @@
  * @format: String to look for specifiers and print.
  * Return: Numbers of printed characters.
  */
+#include "main.h"
 int _printf(const char *format, ...)
 {
-	int i = 0, finLen = 0;
-	char *s, c;
+	int finLen = 0;
 	va_list vargs;
 
 	va_start(vargs, format);
-	while (format[i] != '\0')
-	{
-		if (format[i] == '%')
-		{
-			if (format[i + 1] == '%')
-			{
-				finLen = finLen + _putchar(format[i]);
-				i = i + 1;
-			}
-			else if (format[i + 1] == 'c')
-			{
-				c = va_arg(vargs, int);
-				if (c)
-					finLen = finLen + _print_c(c);
-				i = i + 1;
-			}
-			else if (format[i + 1] == 's')
-			{
-				s = va_arg(vargs, char *);
-				if (s)
-					finLen = finLen + _print_s(s);
-				i = i + 1;
-			}
-			else if (format[i + 1] == '\0')
-				return (finLen = -1);
-			else
-				finLen = finLen + _putchar(format[i]);
-		}
-		else if (format[i] != '\0')
-			finLen = finLen + _putchar(format[i]);
-		i++;
-	}
+	print_selector(format, vargs, &finLen);
 	va_end(vargs);
 	return (finLen);
+}
+int print_c(char c)
+{
+	return (write(1,&c,1));
+}
+int print_s(char *s)
+{
+	int count = 0;
+
+	if (s)
+	{
+		while (*s != '\0')
+		{
+			count = count + print_c(*s);
+			s++;
+		}
+	}
+	else
+	{
+		count = count + print_s("(null)");
+	}
+	return (count);
+}
+int print_selector(const char *fmt, va_list args, int *newLen)
+{
+	int carg;
+	char *sarg;
+	while (*fmt != '\0')
+	{
+		if (*fmt == '%')
+		{
+			switch (*(fmt + 1))
+			{
+				case '%':
+					*newLen = *newLen + print_c(*fmt);
+					fmt++;
+					break;
+				case 'c':
+					carg = (int)va_arg(args, int);
+					if (carg)
+						*newLen = *newLen + print_c(carg);
+					fmt++;
+					break;
+				case 's':
+					sarg = (char *)va_arg(args, char *);
+					if (sarg)
+						*newLen = *newLen + print_s(sarg);
+					fmt++;
+					break;
+				case '\0':
+					*newLen = -1;
+					break;
+				default:
+					*newLen = *newLen + print_c(*fmt);
+					break;
+			}
+		}
+		else
+		{
+			*newLen = *newLen + print_c(*fmt);
+		}
+		fmt++;
+	}
 }
