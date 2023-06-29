@@ -11,6 +11,8 @@ int _printf(const char *format, ...)
 	int finLen = 0;
 	va_list vargs;
 
+	if (format == NULL)
+		return (finLen);
 	va_start(vargs, format);
 	print_selector(format, vargs, &finLen);
 	va_end(vargs);
