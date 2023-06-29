@@ -7,8 +7,6 @@
  */
 void print_selector(const char *fmt, va_list args, int *newLen)
 {
-	if (fmt == NULL)
-		*newLen = -1;
 	while (*fmt != '\0')
 	{
 		if (*fmt == '%')
