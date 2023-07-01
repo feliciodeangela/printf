@@ -5,10 +5,10 @@
  * @id: int to print.
  * Return: Numbers of printed characters.
  */
-int print_id(int id)
+int print_id(long int id)
 {
 	char *s;
-	int i = 0, d = id;
+	long int i = 0, d = id;
 
 	if (!id)
 	{

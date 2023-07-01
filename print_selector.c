@@ -26,11 +26,11 @@ void print_selector(const char *fmt, va_list args, int *newLen)
 					fmt++;
 					break;
 				case 'i':
-					*newLen = *newLen + print_id((int)va_arg(args, int));
+					*newLen = *newLen + print_id((long int)va_arg(args, long int));
 					fmt++;
 					break;
 				case 'd':
-					*newLen = *newLen + print_id((int)va_arg(args, int));
+					*newLen = *newLen + print_id((long int)va_arg(args, long int));
 					fmt++;
 					break;
 				case '\0':

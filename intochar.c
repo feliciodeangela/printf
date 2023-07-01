@@ -5,9 +5,9 @@
  * @str: Allocated string.
  * Return: Size of array that represents the number.
  */
-int intochar(int num, char *str)
+int intochar(long int num, char *str)
 {
-	int i = 0, isNegative = 0, start, end, digit;
+	long int i = 0, isNegative = 0, start, end, digit;
 	char temp;
 
 	if (num < 0)
